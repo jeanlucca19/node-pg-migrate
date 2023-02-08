@@ -1,0 +1,9 @@
+{
+    "db": {
+      "user": "pg-docker",
+      "password": "docker",
+      "host": "localhost",
+      "port": 5432,
+      "database": "pg-docker"
+    }
+  }
