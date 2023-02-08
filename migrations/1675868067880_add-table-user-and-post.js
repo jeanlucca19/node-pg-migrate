@@ -3,7 +3,7 @@
 exports.shorthands = undefined;
 
 exports.up = pgm => {
-    pgm.createTable('products', {
+    pgm.createTable('users', {
         id: 'id',
         name: { type: 'varchar(1000)', notNull: true },
         createdAt: {
@@ -14,10 +14,10 @@ exports.up = pgm => {
     })
     pgm.createTable('posts', {
         id: 'id',
-        productId: {
+        userId: {
             type: 'integer',
             notNull: true,
-            references: '"products"',
+            references: '"users"',
             onDelete: 'cascade',
         },
         body: { type: 'text', notNull: true },
@@ -26,8 +26,14 @@ exports.up = pgm => {
             notNull: true,
             default: pgm.func('current_timestamp'),
         },
+        postAt: {
+            type: 'timestamp',
+            notNull: true,
+            default: pgm.func('current_timestamp'),
+        },
     })
-    pgm.createIndex('posts', 'productId')
+    pgm.createIndex('posts', 'userId')
+    pgm.createIndex('posts', 'postAt')
 };
 
 exports.down = pgm => { };
