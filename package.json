@@ -18,7 +18,7 @@
     "test:cov": "jest --coverage",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
     "test:e2e": "jest --config ./test/jest-e2e.json",
-    "migrate": "DATABASE_URL=postgresql://pg-docker:pg-docker@localhost:5432/pg-docker node-pg-migrate"
+    "migrate": "node-pg-migrate"
   },
   "dependencies": {
     "@faker-js/faker": "^7.6.0",

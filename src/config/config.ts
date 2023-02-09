@@ -18,4 +18,4 @@ const dbProvider = {
   providers: [dbProvider],
   exports: [dbProvider],
 })
-export class DbModule {}
+export class DbModule { }
