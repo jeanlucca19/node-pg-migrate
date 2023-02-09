@@ -1,17 +1,17 @@
 import { Injectable } from "@nestjs/common";
 import { PointsRepository } from "./points.repository";
 import { faker } from '@faker-js/faker';
-import PointsDto from './points.dto';
+import { PointsRequestDto } from './points.dto';
 
 @Injectable()
 export class PointsService {
   constructor(private readonly pointsRepository: PointsRepository) { }
-  async getPoints(): Promise<any[]> {
-    return await this.pointsRepository.getPoints()
+  async findAllPoints(): Promise<any[]> {
+    return await this.pointsRepository.findAllPoints()
   }
 
-  async savePointsByFaker(): Promise<PointsDto[]> {
-    const pointsCreated: PointsDto[] = []
+  async savePointsByFaker(): Promise<PointsRequestDto[]> {
+    const pointsCreated: PointsRequestDto[] = []
 
     const createRandomPoints = () => {
       return {
@@ -28,7 +28,7 @@ export class PointsService {
     return pointsCreated
   }
 
-  async getPointsByBucket(agregationTime: string) {
-    return await this.pointsRepository.getPointsByBucket(agregationTime);
+  async findAllPointsByBucket(agregationTime: string) {
+    return await this.pointsRepository.findAllPointsByBucket(agregationTime);
   }
 }

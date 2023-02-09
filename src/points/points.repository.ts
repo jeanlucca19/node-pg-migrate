@@ -1,24 +1,24 @@
 import { Injectable, Inject } from '@nestjs/common';
 import { Pool } from 'pg';
 import { PG_CONNECTION } from '../constants';
-import PointsDto from './points.dto';
+import { PointsRequestDto } from './points.dto';
 
 @Injectable()
 export class PointsRepository {
   constructor(@Inject(PG_CONNECTION) private conn: Pool) { }
 
-  async getPoints(): Promise<PointsDto[]> {
+  async findAllPoints(): Promise<PointsRequestDto[]> {
     const res = await this.conn.query(`SELECT * FROM "points"`);
     return res.rows;
   }
-  async createPoint(point: PointsDto): Promise<PointsDto[]> {
+  async createPoint(point: PointsRequestDto): Promise<PointsRequestDto[]> {
     const res = await this.conn.query(`INSERT INTO "points" (datetime, value) VALUES($1, $2)`,
       [point.datetime, point.value]
     );
     return res.rows;
   }
 
-  async getPointsByBucket(agregationTime: string) {
+  async findAllPointsByBucket(agregationTime: string) {
     const res = await this.conn.query(`
         SELECT time_bucket($1, datetime) AS bucket,
         avg(value) AS avg_value 
