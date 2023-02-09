@@ -1,2 +1,3 @@
-1. npm run migrate create migration-name
-2. npm run migrate up
+1. yarn migrate create migration-name
+2. yarn migrate up
+3. yarn migrate down
