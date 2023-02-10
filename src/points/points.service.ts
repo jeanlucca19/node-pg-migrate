@@ -1,4 +1,4 @@
-import { Injectable } from "@nestjs/common";
+import { BadRequestException, Injectable } from "@nestjs/common";
 import { PointsRepository } from "./points.repository";
 import { faker } from '@faker-js/faker';
 import { PointsRequestDto } from './points.dto';
@@ -29,6 +29,10 @@ export class PointsService {
   }
 
   async findAllPointsByBucket(agregationTime: string) {
-    return await this.pointsRepository.findAllPointsByBucket(agregationTime);
+    try {
+      return await this.pointsRepository.findAllPointsByBucket(agregationTime);
+    } catch (error) {
+      throw new BadRequestException(error.message)
+    }
   }
 }
