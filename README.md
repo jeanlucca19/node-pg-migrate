@@ -2,17 +2,18 @@
 
 An Object Relational Mapping (ORM), as TypeORM, Prisma and Sequelize, are technologies that let you query and manipulate data usually from a database using an object-oriented paradigm.
 
-But currently we are having the disadvantage of the __low performance to execute more complex queries using the ORM__.
+But currently we are having the disadvantage of the **low performance to execute more complex queries using the ORM**.
 
-With that in mind, we bring the ****`node-pg-migrate`**** library as an alternative. Which is **Database Migration Management** created exclusively for **postgres.**.
+With that in mind, we bring the **`node-pg-migrate`** library as an alternative. Which is **Database Migration Management** created exclusively for **postgres.**.
 <br>
 
-##    Scope:
-Based on the library documentation, we created a simple migration of the tables: user, posts and points. And an application to perform aggregation using time scale db.
+## Scope:
+
+Based on the [library documentation](https://salsita.github.io/node-pg-migrate/#/), we created a simple migration of the tables: user, posts and points. And an application to perform aggregation using time scale db.
 
 #### 🛠 Tecnologias
 
-__As seguintes__ ferramentas foram usadas na construção do projeto:
+**As seguintes** ferramentas foram usadas na construção do projeto:
 
 - [Nest.js]
 - [TypeScript]
@@ -24,8 +25,30 @@ __As seguintes__ ferramentas foram usadas na construção do projeto:
 
 <hr>
 
+## How to use
+
+Create the following .env using your database credentials:
+
+```
+DATABASE_URL=postgresql://database-user:password@localhost:5432/database-name
+```
+
+Run the following command to install all the dependencies:
+
+```
+yarn install || npm install
+```
+
+Run the following command in order to up the migration:
+
+```
+yarn migrate up || npm run migrate up
+```
+
 ##### Autores
------
+
+---
+
  <table>
 	<tr>  
 		<td align="center">
