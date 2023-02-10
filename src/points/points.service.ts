@@ -35,4 +35,12 @@ export class PointsService {
       throw new BadRequestException(error.message)
     }
   }
+
+  async findAllPointsByBucketGapfill(agregationTime: string, gapfill: string) {
+    try {
+      return await this.pointsRepository.findAllPointsByBucketGapfill(agregationTime, gapfill);
+    } catch (error) {
+      throw new BadRequestException(error.message)
+    }
+  }
 }
