@@ -1,31 +1,34 @@
 /* eslint-disable camelcase */
+const { PgLiteral } = require('node-pg-migrate')
 
-exports.shorthands = undefined;
+exports.shorthands = { 
+    id: {
+      type: 'uuid', 
+      primaryKey: true 
+    }, 
+    createdAt: { 
+      type: 'timestamp', 
+      notNull: true, 
+      default:  PgLiteral.create("CURRENT_TIMESTAMP")
+    } 
+  }
 
 exports.up = (pgm) => {
     pgm.createTable('users', {
       id: 'id',
       name: { type: 'varchar(1000)', notNull: true },
-      createdAt: {
-        type: 'timestamp',
-        notNull: true,
-        default: pgm.func('current_timestamp'),
-      },
+      createdAt: 'createdAt',
     })
     pgm.createTable('posts', {
       id: 'id',
       userId: {
-        type: 'integer',
+        type: 'uuid',
         notNull: true,
         references: '"users"',
         onDelete: 'cascade',
       },
       body: { type: 'text', notNull: true },
-      createdAt: {
-        type: 'timestamp',
-        notNull: true,
-        default: pgm.func('current_timestamp'),
-      },
+      createdAt: 'createdAt' ,
     })
     pgm.createIndex('posts', 'userId')
   }
