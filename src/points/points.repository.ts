@@ -30,4 +30,19 @@ export class PointsRepository {
     )
     return res.rows
   }
+
+  async findAllPointsByBucketGapfill(agregationTime: string, gapfill: string) {
+    const res = await this.conn.query(`
+        SELECT time_bucket_gapfill($1, datetime) AS bucket,
+        avg(value) AS avg_value 
+        FROM "points"
+        WHERE datetime > (now() - INTERVAL '${gapfill}') AND datetime < now()
+        GROUP BY bucket
+        ORDER BY bucket ASC;
+      `,
+      [agregationTime]
+    )
+    return res.rows
+  }
+  
 } 

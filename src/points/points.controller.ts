@@ -1,5 +1,5 @@
 import { Controller, Get, Post, Query } from "@nestjs/common";
-import { PointsBucketParamsDto, PointsRequestDto } from "./points.dto";
+import { PointsBucketParamsDto, PointsBucketParamsGapfillDto, PointsRequestDto } from "./points.dto";
 import { PointsService } from "./points.service";
 
 @Controller('/points')
@@ -20,5 +20,11 @@ export class PointsController {
   findAllPointsByBucket(@Query() params: PointsBucketParamsDto) {
     const { agregationTime } = params
     return this.pointsService.findAllPointsByBucket(agregationTime)
+  }
+
+  @Get('/bucket-gapfill')
+  findAllPointsByBucketGapfill(@Query() params: PointsBucketParamsGapfillDto) {
+    const { agregationTime, gapfill } = params
+    return this.pointsService.findAllPointsByBucketGapfill(agregationTime, gapfill)
   }
 }
