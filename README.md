@@ -9,7 +9,7 @@ With that in mind, we bring the **`node-pg-migrate`** library as an alternative.
 
 ## Scope:
 
-Based on the library documentation, we created a simple migration of the tables: user, posts and points. And an application to perform aggregation using time scale db.
+Based on the [library documentation](https://salsita.github.io/node-pg-migrate/#/), we created a simple migration of the tables: user, posts and points. And an application to perform aggregation using time scale db.
 
 #### 🛠 Tecnologias
 
