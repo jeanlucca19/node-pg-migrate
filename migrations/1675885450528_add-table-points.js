@@ -6,10 +6,13 @@ exports.up = pgm => {
             type: 'timestamp',
         },
         value: { type: 'real', },
-    }),
+    }, {
+        ifNotExists: true    
+    },
 
-    pgm.sql(`SELECT create_hypertable('points', 'datetime')`)
+    pgm.sql(`SELECT create_hypertable('points', 'datetime', if_not_exists => TRUE)`)
 
+    )
 };
 
 exports.down = pgm => {
